@@ -78,7 +78,7 @@ public class BookController {
         if (bookService.addBook(book)) {
             redirectAttributes.addFlashAttribute("succ", "图书添加成功！");
         } else {
-            redirectAttributes.addFlashAttribute("succ", "图书添加失败！");
+            redirectAttributes.addFlashAttribute("error", "图书添加失败！");
         }
         return "redirect:/admin_books.html";
     }
