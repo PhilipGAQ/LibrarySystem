@@ -21,7 +21,7 @@
     </update>
     <insert id="addReaderInfo" parameterType="com.library.bean.ReaderInfo">
         insert into reader values
-        (null, #{name},#{sex},#{birth},#{address},#{phone})
+        (null, #{name},#{sex},#{birth},#{address},#{phone},null,null)
     </insert>
     <select id="getReaderId" resultType="long" parameterType="com.library.bean.ReaderInfo">
         select reader_id from reader where

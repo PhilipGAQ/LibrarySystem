@@ -5,11 +5,12 @@ import java.util.Date;
 
 public class Lend implements Serializable {
 
-    private long ser_num;
+    private long borrow_id;
     private long book_id;
     private long reader_id;
-    private Date lend_date;
-    private Date back_date;
+    private Date borrow_date;
+    private Date due_date;
+    private Date return_date;
 
     public long getReaderId() {
         return reader_id;
@@ -27,27 +28,35 @@ public class Lend implements Serializable {
         this.book_id = book_id;
     }
 
-    public void setSer_num(long ser_num) {
-        this.ser_num = ser_num;
+    public void setBorrow_id(long borrow_id) {
+        this.borrow_id = borrow_id;
     }
 
     public Date getBackDate() {
-        return back_date;
+        return due_date;
     }
 
     public void setBackDate(Date back_date) {
-        this.back_date = back_date;
+        this.due_date = back_date;
     }
 
     public Date getLendDate() {
-        return lend_date;
+        return borrow_date;
     }
 
     public void setLendDate(Date lend_date) {
-        this.lend_date = lend_date;
+        this.borrow_date = lend_date;
     }
 
-    public long getSer_num() {
-        return ser_num;
+    public long getBorrow_id() {
+        return borrow_id;
     }
+
+    public Date getDueDate() {return due_date;}
+
+    public void setDueDate(Date due_date) {this.due_date = due_date;}
+
+    public Date getReturnDate() {return return_date;}
+
+    public void setReturnDate(Date return_date) {this.return_date = return_date;}
 }

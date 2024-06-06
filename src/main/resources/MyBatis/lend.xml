@@ -10,7 +10,7 @@
     </update>
     <insert id="lendBookOne">
         insert into borrow values
-        (null , #{book_id} , #{reader_id} , sysdate())
+        (null , #{book_id} , #{reader_id} , sysdate(),null,null)
     </insert>
     <update id="lendBookTwo" parameterType="long">
         update book set number = number - 1 where book_id = #{book_id}
@@ -22,6 +22,6 @@
         select * from borrow where reader_id = #{reader_id}
     </select>
     <delete id="deleteLend" parameterType="long">
-        delete from borrow where borrow_id = #{ser_num}
+        delete from borrow where borrow_id = #{borrow_id}
     </delete>
 </mapper>

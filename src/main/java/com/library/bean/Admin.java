@@ -5,6 +5,7 @@ public class Admin {
     private long admin_id;
     private String password;
     private String username;
+    private String name;
 
     public long getAdminId() {
         return admin_id;
@@ -29,5 +30,9 @@ public class Admin {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getName() {return name;}
+
+    public void setName(String name) {this.name = name;}
 
 }
