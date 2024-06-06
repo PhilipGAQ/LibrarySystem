@@ -64,13 +64,13 @@ VALUES
 	( 21, '环境科学' ),
 	( 22, '综合' );
 CREATE TABLE `lend_list` (
-	`ser_num` BIGINT NOT NULL PRIMARY KEY,
+	`borrow_id` BIGINT NOT NULL PRIMARY KEY,
 	`book_id` BIGINT NOT NULL,
 	`reader_id` BIGINT NOT NULL,
 	`lend_date` date DEFAULT NULL,
 	`back_date` date DEFAULT NULL 
 ) ENGINE = INNODB DEFAULT CHARSET = utf8;
-ALTER TABLE `lend_list` MODIFY `ser_num` BIGINT NOT NULL AUTO_INCREMENT,
+ALTER TABLE `lend_list` MODIFY `borrow_id` BIGINT NOT NULL AUTO_INCREMENT,
 AUTO_INCREMENT = 1;
 INSERT INTO `lend_list`
 VALUES
