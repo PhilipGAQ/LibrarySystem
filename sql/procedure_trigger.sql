@@ -18,7 +18,7 @@ FOR EACH ROW
 DROP TRIGGER if exists set_due_date;
 
 CREATE TRIGGER `set_due_date`
-    BEFORE INSERT ON `borrow`
+    before INSERT ON `borrow`
     FOR EACH ROW
 BEGIN
     IF NEW.due_date IS NULL THEN
