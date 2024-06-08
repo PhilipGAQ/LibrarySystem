@@ -69,6 +69,7 @@ background-attachment: fixed;">
         <table class="table table-hover">
             <thead>
             <tr>
+                <th>书号</th>
                 <th>书名</th>
                 <th>作者</th>
                 <th>出版社</th>
@@ -82,6 +83,7 @@ background-attachment: fixed;">
             <tbody>
             <c:forEach items="${books}" var="book">
                 <tr>
+                    <td><c:out value="${book.bookId}"></c:out></td>
                     <td><c:out value="${book.name}"></c:out></td>
                     <td><c:out value="${book.author}"></c:out></td>
                     <td><c:out value="${book.publish}"></c:out></td>
@@ -96,8 +98,8 @@ background-attachment: fixed;">
                         </c:if>
                     </c:forEach>
                     <c:if test="${flag}">
-                        <td><a href="returnbook.html?bookId=<c:out value="${book.bookId}"></c:out>">
-                            <button type="button" class="btn btn-danger btn-xs">归还</button>
+                        <td><a href="lendbook.html?bookId=<c:out value="${book.bookId}"></c:out>">
+                            <button type="button" class="btn btn-primary btn-xs" disabled="disabled">借阅</button>
                         </a></td>
                     </c:if>
                     <c:if test="${not flag}">

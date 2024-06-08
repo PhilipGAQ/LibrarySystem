@@ -48,7 +48,7 @@ public class OverDueController {
     @RequestMapping("deleteoverdue.html")
     public String deleteOverdue(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         long id = Long.parseLong(request.getParameter("id"));
-        if (overDueService.deleteOverDue((int)id)){
+        if (overDueService.deleteOverDue(id)){
             redirectAttributes.addFlashAttribute("succ","罚款交付成功！");
         }
         else{

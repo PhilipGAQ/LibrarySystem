@@ -90,9 +90,9 @@
 <body>
 <div class="container">
     <h1>404 Not Find<span>:(</span></h1>
-    <p>对不起，您访问的页面不存在~</p>
-    <p>请输入正确的地址</p>
-    <p><em id="num">3</em>秒后，自动跳转到上一页</p>
+    <p>Pages Not Found</p>
+    <p>Please Enter Correct address</p>
+    <p><em id="num">3</em>s, go back to last page</p>
     <script>
         var i =3;
         function djs() {

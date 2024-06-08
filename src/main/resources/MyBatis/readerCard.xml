@@ -16,6 +16,6 @@
         select password from reader where reader_id = #{reader_id}
     </select>
     <delete id="deleteReaderCard" parameterType="long">
-        delete from reader_card where reader_id = #{reader_id}
+        delete from reader where reader_id = #{reader_id}
     </delete>
 </mapper>

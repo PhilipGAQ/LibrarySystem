@@ -51,7 +51,7 @@ public class OverDueService {
      * @param overdueId 逾期记录ID
      * @return 是否删除成功
      */
-    public boolean deleteOverDue(int overdueId) {
+    public boolean deleteOverDue(long overdueId) {
         overDueDao.deleteOverDue(overdueId);
         return true;
     }
@@ -78,7 +78,7 @@ public class OverDueService {
      * @param borrowId 借书记录ID
      * @return 逾期记录列表
      */
-    public ArrayList<OverDue> getOverDueByBorrowId(int borrowId) {
+    public ArrayList<OverDue> getOverDueByBorrowId(long borrowId) {
         return overDueDao.getOverDueByBorrowId(borrowId);
     }
 }

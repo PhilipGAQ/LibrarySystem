@@ -138,8 +138,7 @@ public class BookController {
         ArrayList<Lend> myAllLendList = lendService.myLendList(readerCard.getReaderId());
         ArrayList<Long> myLendList = new ArrayList<>();
         for (Lend lend : myAllLendList) {
-            // 是否已归还
-            if (lend.getBackDate() == null) {
+            if (lend.getReturnDate() == null) {
                 myLendList.add(lend.getBookId());
             }
         }

@@ -1,3 +1,26 @@
+INSERT INTO `class` (`class_id`, `class_name`) VALUES
+(101, 'Classic'),
+(102, 'Mystery'),
+(103, 'Science Fiction'),
+(104, 'Romance'),
+(105, 'Adventure'),
+(106, 'Historical'),
+(107, 'Fantasy'),
+(108, 'Poetry'),
+(109, 'Philosophy'),
+(110, 'Biography');
+
+
+INSERT INTO `reader` (name, sex, birth, address, phone,username,password) VALUES
+('John Doe', 'M', '1985-04-12', '123 Elm Street, New York', '555-1234' ,NULL, '123456' ),
+('Jane Smith', 'F', '1991-07-25', '456 Oak Street, Los Angeles', '555-2345','11112', '123456'),
+('Michael Brown', 'M', '1980-09-15', '789 Pine Street, Chicago', '555-3456','11113','123456'),
+('Emily Davis', 'F', '1993-01-30', '101 Birch Street, Houston', '555-4567','11114', '123456'),
+('William Miller', 'M', '1987-12-08', '202 Maple Street, Philadelphia', '555-5678','11115', '123456'),
+('Olivia Wilson', 'F', '1995-06-18', '303 Cedar Street, San Francisco', '555-6789','11116', '123456');
+
+
+
 INSERT INTO `book` (`book_id`, `name`, `author`, `publish`, `ISBN`, `introduction`, `language`, `price`, `pub_date`, `class_id`, `number`) VALUES
 (1, 'The Great Gatsby', 'F. Scott Fitzgerald', 'Scribner', '978-0743273565', 'A novel about the Jazz Age in New York.', 'en', 10.99, '1925-04-10', 101, 1),
 (2, 'To Kill a Mockingbird', 'Harper Lee', 'J.B. Lippincott & Co.', '978-0446310784', 'A classic novel dealing with racial injustice.', 'en', 9.99, '1960-07-11', 102, 2),
@@ -14,17 +37,6 @@ INSERT INTO `book` (`book_id`, `name`, `author`, `publish`, `ISBN`, `introductio
 (13, 'Great Expectations', 'Charles Dickens', 'Chapman & Hall', '978-0142437964', 'A novel about the personal growth of an orphan named Pip.', 'en', 12.99, '1861-10-01', 105, 4),
 (14, 'Oliver Twist', 'Charles Dickens', 'Richard Bentley', '978-0142437964', 'A novel about the life of an orphan boy in London.', 'en', 11.99, '1838-02-01', 105, 6);
 
-INSERT INTO `class` (`class_id`, `class_name`) VALUES
-(101, 'Classic'),
-(102, 'Mystery'),
-(103, 'Science Fiction'),
-(104, 'Romance'),
-(105, 'Adventure'),
-(106, 'Historical'),
-(107, 'Fantasy'),
-(108, 'Poetry'),
-(109, 'Philosophy'),
-(110, 'Biography');
 
 INSERT INTO `borrow` (`borrow_id`, `book_id`, `reader_id`, `borrow_date`, `due_date`, `return_date`)
 VALUES
@@ -45,12 +57,3 @@ INSERT INTO `reservation` (`student_id`, `book_id`, `reservation_date`, `status`
 INSERT INTO `admin`
 VALUES
 ( 123, '123', 'admin' , 'PB21020572');
-
-INSERT INTO `reader` (name, sex, birth, address, phone,username,password) VALUES
-('John Doe', 'M', '1985-04-12', '123 Elm Street, New York', '555-1234' ,NULL, '123456' ),
-('Jane Smith', 'F', '1991-07-25', '456 Oak Street, Los Angeles', '555-2345','11112', '123456'),
-('Michael Brown', 'M', '1980-09-15', '789 Pine Street, Chicago', '555-3456','11113','123456'),
-('Emily Davis', 'F', '1993-01-30', '101 Birch Street, Houston', '555-4567','11114', '123456'),
-('William Miller', 'M', '1987-12-08', '202 Maple Street, Philadelphia', '555-5678','11115', '123456'),
-('Olivia Wilson', 'F', '1995-06-18', '303 Cedar Street, San Francisco', '555-6789','11116', '123456');
-

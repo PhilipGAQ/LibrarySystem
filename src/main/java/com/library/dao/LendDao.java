@@ -50,7 +50,7 @@ public class LendDao {
         return (ArrayList<Lend>) result;
     }
 
-    public int deleteLend(final long ser_num) {
-        return sqlSessionTemplate.delete(NAMESPACE + "deleteLend", ser_num);
+    public int deleteLend(final long borrow_id) {
+        return sqlSessionTemplate.delete(NAMESPACE + "deleteLend", borrow_id);
     }
 }

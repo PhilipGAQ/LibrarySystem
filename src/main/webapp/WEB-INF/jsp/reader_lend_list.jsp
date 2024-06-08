@@ -49,8 +49,10 @@ background-attachment: fixed;">
             <tr>
                 <th>图书号</th>
                 <th>借出日期</th>
+                <th>应还日期</th>
                 <th>归还日期</th>
                 <th>状态</th>
+                <th>借还</th>
             </tr>
             </thead>
             <tbody>
@@ -59,14 +61,31 @@ background-attachment: fixed;">
                     <td><c:out value="${alog.bookId}"></c:out></td>
                     <td><c:out value="${alog.lendDate}"></c:out></td>
                     <td><c:out value="${alog.backDate}"></c:out></td>
-                    <c:if test="${empty alog.backDate}">
+                    <td><c:out value="${alog.returnDate}"></c:out></td>
+                    <c:if test="${empty alog.returnDate}">
                         <td>未还</td>
                     </c:if>
-                    <c:if test="${!empty alog.backDate}">
+                    <c:if test="${!empty alog.returnDate}">
                         <td>已还</td>
                     </c:if>
                     <c:if test="">
                         <td>超期</td>
+                    </c:if>
+                    <c:set var="flag" value="false"/>
+                    <c:forEach var="lend" items="${myLendList}">
+                        <c:if test="${lend eq alog.bookId}">
+                            <c:set var="flag" value="true"/>
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${flag}">
+                        <td><a href="returnbook.html?bookId=<c:out value="${alog.bookId}"></c:out>">
+                            <button type="button" class="btn btn-danger btn-xs">归还</button>
+                        </a></td>
+                    </c:if>
+                    <c:if test="${not flag}">
+                        <td><a href="returnbook.html?bookId=<c:out value="${alog.bookId}"></c:out>">
+                            <button type="button" class="btn btn-danger btn-xs" disabled="disabled">归还</button>
+                        </a></td>
                     </c:if>
                 </tr>
             </c:forEach>

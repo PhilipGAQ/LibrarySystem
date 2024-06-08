@@ -35,7 +35,7 @@ public class OverDueDao {
         }});
     }
 
-    public void deleteOverDue(int overdue_id) {
+    public void deleteOverDue(long overdue_id) {
         sqlSessionTemplate.delete(NAMESPACE + "deleteOverDue", overdue_id);
     }
 
@@ -49,8 +49,9 @@ public class OverDueDao {
         return (ArrayList<OverDue>) result;
     }
 
-    public ArrayList<OverDue> getOverDueByBorrowId(int borrow_id) {
+    public ArrayList<OverDue> getOverDueByBorrowId(long borrow_id) {
         List<OverDue> result=sqlSessionTemplate.selectList(NAMESPACE + "getOverDueByBorrowId", borrow_id);
         return (ArrayList<OverDue>) result;
     }
+
 }

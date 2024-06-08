@@ -4,19 +4,23 @@ import java.util.Date;
 import java.io.Serializable;
 
 public class OverDue implements Serializable {
-    private int overdue_id;
-    private int student_id;
-    private int borrow_id;
+    private long overdue_id;
+    private long student_id;
+    private long borrow_id;
     private Date due_date;
     private Date return_date;
     private int overdue_days;
     private int fine_amount;
+    private String name;
 
-    public int getOverdue_id() {return overdue_id;}
+    public String getName(){return name;}
+    public void setName(String name){this.name = name;}
 
-    public int getStudent_id() {return student_id;}
+    public long getOverdue_id() {return overdue_id;}
 
-    public int getBorrow_id() {return borrow_id;}
+    public long getStudent_id() {return student_id;}
+
+    public long getBorrow_id() {return borrow_id;}
 
     public Date getDue_date() {return due_date;}
 
@@ -26,9 +30,9 @@ public class OverDue implements Serializable {
 
     public int getFine_amount() {return fine_amount;}
 
-    public void setOverdue_id(int overdue_id) {this.overdue_id = overdue_id;}
-    public void setStudent_id(int student_id) {this.student_id = student_id;}
-    public void setBorrow_id(int borrow_id) {this.borrow_id = borrow_id;}
+    public void setOverdue_id(long overdue_id) {this.overdue_id = overdue_id;}
+    public void setStudent_id(long student_id) {this.student_id = student_id;}
+    public void setBorrow_id(long borrow_id) {this.borrow_id = borrow_id;}
     public void setDue_date(Date due_date) {this.due_date = due_date;}
     public void setReturn_date(Date return_date) {this.return_date = return_date;}
     public void setOverdue_days(int overdue_days) {this.overdue_days = overdue_days;}

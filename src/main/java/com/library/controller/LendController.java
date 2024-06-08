@@ -1,5 +1,6 @@
 package com.library.controller;
 
+import com.library.bean.Lend;
 import com.library.bean.ReaderCard;
 import com.library.service.BookService;
 import com.library.service.LendService;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 @Controller
 public class LendController {
@@ -40,8 +42,16 @@ public class LendController {
     @RequestMapping("/mylend.html")
     public ModelAndView myLend(HttpServletRequest request) {
         ReaderCard readerCard = (ReaderCard) request.getSession().getAttribute("readercard");
+        ArrayList<Lend> myAllLendList = lendService.myLendList(readerCard.getReaderId());
+        ArrayList<Long> myLendList = new ArrayList<>();
+        for (Lend lend : myAllLendList) {
+            if (lend.getReturnDate() == null) {
+                myLendList.add(lend.getBookId());
+            }
+        }
         ModelAndView modelAndView = new ModelAndView("reader_lend_list");
         modelAndView.addObject("list", lendService.myLendList(readerCard.getReaderId()));
+        modelAndView.addObject("myLendList", myLendList);
         return modelAndView;
     }
 
@@ -63,7 +73,7 @@ public class LendController {
         if (lendService.lendBook(bookId, readerId)) {
             redirectAttributes.addFlashAttribute("succ", "图书借阅成功！");
         } else {
-            redirectAttributes.addFlashAttribute("succ", "图书借阅成功！");
+            redirectAttributes.addFlashAttribute("error", "图书借阅失败！");
         }
         return "redirect:/reader_books.html";
     }
@@ -77,6 +87,6 @@ public class LendController {
         } else {
             redirectAttributes.addFlashAttribute("error", "图书归还失败！");
         }
-        return "redirect:/reader_books.html";
+        return "redirect:/mylend.html";
     }
 }

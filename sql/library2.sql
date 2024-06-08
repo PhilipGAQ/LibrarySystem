@@ -1,3 +1,4 @@
+drop schema library;
 CREATE DATABASE library;
 USE library;
 
@@ -24,8 +25,8 @@ CREATE TABLE `class` ( `class_id` INT NOT NULL PRIMARY KEY,
 
 CREATE TABLE `borrow` (
                              `borrow_id` int NOT NULL auto_increment PRIMARY KEY,
-                             `book_id` int NOT NULL,
-                             `reader_id` int NOT NULL,
+                             `book_id` bigint NOT NULL,
+                             `reader_id` bigint NOT NULL,
                              `borrow_date` date NOT NULL,
                              `due_date` date,
                              `return_date` date DEFAULT NULL
@@ -34,8 +35,8 @@ CREATE TABLE `borrow` (
 
 CREATE TABLE `reservation` (
                                `reservation_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                               `student_id` INT NOT NULL,
-                               `book_id` INT NOT NULL,
+                               `student_id` BIGINT NOT NULL,
+                               `book_id` BIGINT NOT NULL,
                                `reservation_date` DATE NOT NULL,
                                `status` INT NOT NULL
 )  DEFAULT CHARSET = utf8;
@@ -61,12 +62,13 @@ CREATE TABLE `reader` (
 
 CREATE TABLE `overdue` (
                            `overdue_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                           `student_id` INT NOT NULL,
+                           `student_id` BIGINT NOT NULL,
                            `borrow_id` INT NOT NULL,
                            `due_date` DATE NOT NULL,
                            `return_date` DATE NOT NULL,
                            `overdue_days` INT NOT NULL,
-                           `fine_amount` DECIMAL(10, 2) NOT NULL
+                           `fine_amount` DECIMAL(10, 2) NOT NULL,
+                            `name` VARCHAR(25) NOT NULL
 )DEFAULT CHARSET = utf8;
 
 COMMIT;
