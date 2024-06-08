@@ -1,69 +1,109 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加读者</title>
+    <title>Add Reader Information</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
         $(function () {
             $('#header').load('admin_header.html');
         })
     </script>
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .text-center {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .form-group label {
+            font-size: 18px;
+        }
+
+        .form-control::placeholder {
+            font-size: 16px;
+        }
+
+        .container {
+            padding-top: 50px; /* Space for the navbar */
+            max-width: 800px; /* Max width of container */
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        .card {
+            margin-top: 20px;
+        }
+
+        /* Enlarge form font */
+        .form-control {
+            font-size: 20px; /* Enlarge form font size */
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+    </style>
 </head>
-<body background="img/school.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body background="img/ustc.jpg" style="background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;">
 
 <div id="header"></div>
-<div class="col-xs-6 col-md-offset-3" style="padding-top: 100px;position: relative">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">添加读者</h3>
-        </div>
-        <div class="panel-body">
-            <form action="reader_add_do.html" method="post" id="readeredit" >
-                <div class="input-group" style="padding-top: 20px;">
-                    <span  class="input-group-addon">密码</span>
-                    <input  type="password" class="form-control" name="password" id="password" ">
+<div style="padding-top: 70px;"></div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center">Add Reader Information</h4>
                 </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span class="input-group-addon">姓名</span>
-                    <input type="text" class="form-control" name="name" id="name"  >
+                <div class="card-body">
+                    <form action="reader_add_do.html" method="post" id="readeredit">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">Gender</label>
+                            <input type="text" class="form-control" name="sex" id="sex" placeholder="Enter gender">
+                        </div>
+                        <div class="form-group">
+                            <label for="birth">Birthday</label>
+                            <input type="date" class="form-control" name="birth" id="birth" placeholder="Enter birthday">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" name="address" id="address" placeholder="Enter address">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter phone number">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add</button>
+                    </form>
+                    <script>
+                        $("#readeredit").submit(function () {
+                            if ($("#password").val() == '' || $("#name").val() == '' || $("#sex").val() == '' || $("#birth").val() == '' || $("#address").val() == '' || $("#phone").val() == '') {
+                                alert("Please fill in complete reader information!");
+                                return false;
+                            }
+                        });
+                    </script>
                 </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span  class="input-group-addon">性别</span>
-                    <input type="text" class="form-control" name="sex" id="sex" >
-                </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span class="input-group-addon">生日</span>
-                    <input type="date" class="form-control" name="birth" id="birth"  >
-                </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span  class="input-group-addon">地址</span>
-                    <input type="text" class="form-control" name="address" id="address"  >
-                </div>
-                <div class="input-group" style="padding-top: 20px;">
-                    <span class="input-group-addon">电话</span>
-                    <input type="text" class="form-control" name="phone" id="phone"  >
-                </div>
-                <input style="align-items: center" type="submit" value="添加" class="btn btn-success btn-sm"
-                       class="text-left">
-                <script>
-                    function mySubmit(flag){
-                        return flag;
-                    }
-                    $("#readeredit").submit(function () {
-                        if($("#password").val()==''||$("#name").val()==''||$("#sex").val()==''||$("#birth").val()==''||$("#address").val()==''||$("#phone").val()==''){
-                            alert("请填入完整读者信息！");
-                            return mySubmit(false);
-                        }
-                    })
-                </script>
-            </form>
+            </div>
         </div>
     </div>
-
 </div>
 
 </body>

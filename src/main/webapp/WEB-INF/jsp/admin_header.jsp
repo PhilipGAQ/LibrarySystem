@@ -1,56 +1,66 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav style="position:fixed;z-index: 999;width: 100%;background-color: #25c6fc" class="navbar navbar-default"
-     role="navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:fixed;z-index:999;width:100%;padding:15px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-size: 1.5rem;">
     <div class="container-fluid">
-        <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
-            <a class="navbar-brand" href="admin_main.html" style="font-family: 华文行楷; font-size: 250%; color: white">图书管理系统</a>
-        </div>
-        <div class="collapse navbar-collapse" >
-            <ul class="nav navbar-nav navbar-left">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white">
-                        图书管理
-                        <b class="caret"></b>
+        <a class="navbar-brand" href="admin_main.html" style="font-size: 3rem; color:#007bff; font-weight:bold; margin-right: 20px;">USTC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="bookManagementDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 20px;">
+                        Book
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="admin_books.html">全部图书</a></li>
-                        <li class="divider"></li>
-                        <li><a href="book_add.html">增加图书</a></li>
-                    </ul>
+                    <div class="dropdown-menu" aria-labelledby="bookManagementDropdown" style="font-size: 1.25rem;">
+                        <a class="dropdown-item" href="admin_books.html">All Books</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="book_add.html">Add Book</a>
+                    </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white">
-                        读者管理
-                        <b class="caret"></b>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="readerManagementDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 20px;">
+                        Reader
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="allreaders.html">全部读者</a></li>
-                        <li class="divider"></li>
-                        <li><a href="reader_add.html">增加读者</a></li>
-                    </ul>
+                    <div class="dropdown-menu" aria-labelledby="readerManagementDropdown" style="font-size: 1.25rem;">
+                        <a class="dropdown-item" href="allreaders.html">All Readers</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="reader_add.html">Add Reader</a>
+                    </div>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white">
-                        借还管理
-                        <b class="caret"></b>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="lendManagementDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-right: 20px;">
+                        Lending Management
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="lendlist.html">借还日志</a></li>
-                        <li class="divider"></li>
-                        <li><a href="overduelist.html">罚款日志</a></li>
-                    </ul>
+                    <div class="dropdown-menu" aria-labelledby="lendManagementDropdown" style="font-size: 1.25rem;">
+                        <a class="dropdown-item" href="lendlist.html">Lending Logs</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="overduelist.html">Fine Logs</a>
+                    </div>
                 </li>
-                <li >
-                    <a href="admin_repasswd.html" style="color: white">
-                        密码修改
+                <li class="nav-item">
+                    <a class="nav-link" href="admin_repasswd.html" style="margin-right: 20px;">
+                        Change Password
                     </a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.html" style="color: white">${admin.username}, 已登录</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html" style="margin-right: 20px;">
+                        ${admin.username}, Logged In
+                    </a>
                 </li>
-                <li><a href="logout.html" style="color: white">退出</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.html">
+                        Logout
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+
+<!-- 添加 Bootstrap 和 jQuery 的 CDN 链接 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

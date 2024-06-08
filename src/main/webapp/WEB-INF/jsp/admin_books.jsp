@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>全部图书信息</title>
+    <title>All Books Information</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -11,19 +11,51 @@
             $('#header').load('admin_header.html');
         })
     </script>
+    <style>
+        .navbar-fixed-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .panel-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .book-info {
+            margin-top: 20px;
+        }
+        .book-info th {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .book-info td {
+            font-size: 16px;
+        }
+        .btn-custom {
+            background-color: rgba(255, 255, 255, 0.76);
+            border-color: rgba(255, 255, 255, 0.76);
+            color: rgb(1, 123, 245);
+        }
+        .btn-custom:hover {
+            background-color: rgba(28, 153, 255, 0.85);
+            border-color: rgb(1, 123, 245);
+            color: rgba(28, 153, 255, 0.85);
+        }
+    </style>
 </head>
-<body background="img/book1.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body>
 
 <div id="header"></div>
 
-<div style="padding: 70px 550px 10px">
-    <form   method="post" action="querybook.html" class="form-inline"  id="searchform">
+<div style="padding-top: 70px;"></div>
+
+<div style="padding: 20px; margin: 0 auto; max-width: 1000px;"> <!-- Increase max-width to 1000px -->
+    <form method="post" action="querybook.html" class="form-inline mb-3" id="searchform">
         <div class="input-group">
-           <input type="text" placeholder="输入图书名" class="form-control" id="search" name="searchWord" class="form-control">
+            <input type="text" placeholder="Search for Book" class="form-control form-control-lg" id="search" name="searchWord">
             <span class="input-group-btn">
-                            <input type="submit" value="搜索" class="btn btn-default">
+                <input type="submit" value="Search" class="btn btn-primary btn-lg">
             </span>
         </div>
     </form>
@@ -31,74 +63,63 @@ background-attachment: fixed;">
         $("#searchform").submit(function () {
             var val=$("#search").val();
             if(val==''){
-                alert("请输入关键字");
+                alert("Please enter a keyword");
                 return false;
             }
         })
     </script>
-</div>
-<div style="position: relative;top: 10%">
-<c:if test="${!empty succ}">
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">
-            &times;
-        </button>
-        ${succ}
-    </div>
-</c:if>
-<c:if test="${!empty error}">
-    <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">
-            &times;
-        </button>
-        ${error}
-    </div>
-</c:if>
-</div>
-<div class="panel panel-default" style="width: 90%;margin-left: 5%">
-    <div class="panel-heading" style="background-color: #fff">
-        <h3 class="panel-title">
-            全部图书
-        </h3>
-    </div>
-    <div class="panel-body">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>书号</th>
-                <th>书名</th>
-                <th>作者</th>
-                <th>出版社</th>
-                <th>ISBN</th>
-                <th>价格</th>
-                <th>剩余数量</th>
-                <th>详情</th>
-                <th>编辑</th>
-                <th>删除</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${books}" var="book">
-            <tr>
-                <td><c:out value="${book.bookId}"></c:out></td>
-                <td><c:out value="${book.name}"></c:out></td>
-                <td><c:out value="${book.author}"></c:out></td>
-                <td><c:out value="${book.publish}"></c:out></td>
-                <td><c:out value="${book.isbn}"></c:out></td>
-                <td><c:out value="${book.price}"></c:out></td>
-                <td><c:out value="${book.number}"></c:out></td>
-                <td><a href="admin_book_detail.html?bookId=<c:out value="${book.bookId}"></c:out>">
-                    <button type="button" class="btn btn-success btn-xs">详情</button>
-                </a></td>
-                <td><a href="updatebook.html?bookId=<c:out value="${book.bookId}"></c:out>"><button type="button" class="btn btn-info btn-xs">编辑</button></a></td>
-                <td><a href="deletebook.html?bookId=<c:out value="${book.bookId}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
-            </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+
+    <c:if test="${!empty succ}">
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                ${succ}
+        </div>
+    </c:if>
+    <c:if test="${!empty error}">
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                ${error}
+        </div>
+    </c:if>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                All Books
+            </h3>
+        </div>
+        <div class="panel-body book-info">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Price($)</th>
+                    <th>Stock</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${books}" var="book">
+                    <tr>
+                        <td><c:out value="${book.bookId}"/></td>
+                        <td><b><c:out value="${book.name}"/></b></td>
+                        <td><c:out value="${book.author}"/></td>
+                        <td><c:out value="${book.price}"/></td>
+                        <td><c:out value="${book.number}"/></td>
+                        <td><a href="admin_book_detail.html?bookId=<c:out value="${book.bookId}"/>"><button type="button" class="btn btn-custom btn-sm">Details</button></a></td>
+                        <td><a href="updatebook.html?bookId=<c:out value="${book.bookId}"/>"><button type="button" class="btn btn-custom btn-sm">Edit</button></a></td>
+                        <td><a href="deletebook.html?bookId=<c:out value="${book.bookId}"/>"><button type="button" class="btn btn-custom btn-sm">Delete</button></a></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
 </body>
 </html>
