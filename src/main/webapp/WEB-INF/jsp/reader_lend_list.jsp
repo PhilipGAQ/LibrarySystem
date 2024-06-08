@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
-    <title>我的借还</title>
+    <title>Admin Lend List</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -11,82 +13,117 @@
             $('#header').load('reader_header.html');
         })
     </script>
+    <style>
+        body {
+            background-image: url("img/ustclibrary.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            padding-top: 0px;
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .panel {
+            margin-top: 5%;
+            width: 90%;
+            margin-left: 5%;
+        }
+
+        .panel-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .table th, .table td {
+            font-size: 18px;
+        }
+
+        .btn-xs {
+            font-size: 14px;
+        }
+
+        .alert {
+            position: relative;
+            top: 10%;
+        }
+    </style>
 </head>
-<body background="img/lizhi.jpg" style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body>
+
 <div id="header"></div>
-<div style="position: relative;top: 10%">
+
+<div>
     <c:if test="${!empty succ}">
         <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 ${succ}
         </div>
     </c:if>
     <c:if test="${!empty error}">
         <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 ${error}
         </div>
     </c:if>
 </div>
-
-<div class="panel panel-default" style="width: 90%;margin-left: 5%;margin-top: 5%">
+<div style="padding-top: 70px;"></div>
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            我的借还日志
+            Lend List
         </h3>
     </div>
     <div class="panel-body">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>图书号</th>
-                <th>借出日期</th>
-                <th>应还日期</th>
-                <th>归还日期</th>
-                <th>状态</th>
-                <th>借还</th>
+                <th>Book ID</th>
+                <th>Borrow Date</th>
+                <th>Due Date</th>
+                <th>Return Date</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${list}" var="alog">
                 <tr>
                     <td><c:out value="${alog.bookId}"></c:out></td>
-                    <td><c:out value="${alog.lendDate}"></c:out></td>
-                    <td><c:out value="${alog.backDate}"></c:out></td>
-                    <td><c:out value="${alog.returnDate}"></c:out></td>
-                    <c:if test="${empty alog.returnDate}">
-                        <td>未还</td>
-                    </c:if>
-                    <c:if test="${!empty alog.returnDate}">
-                        <td>已还</td>
-                    </c:if>
-                    <c:if test="">
-                        <td>超期</td>
-                    </c:if>
-                    <c:set var="flag" value="false"/>
-                    <c:forEach var="lend" items="${myLendList}">
-                        <c:if test="${lend eq alog.bookId}">
-                            <c:set var="flag" value="true"/>
-                        </c:if>
-                    </c:forEach>
-                    <c:if test="${flag}">
-                        <td><a href="returnbook.html?bookId=<c:out value="${alog.bookId}"></c:out>">
-                            <button type="button" class="btn btn-danger btn-xs">归还</button>
-                        </a></td>
-                    </c:if>
-                    <c:if test="${not flag}">
-                        <td><a href="returnbook.html?bookId=<c:out value="${alog.bookId}"></c:out>">
-                            <button type="button" class="btn btn-danger btn-xs" disabled="disabled">归还</button>
-                        </a></td>
-                    </c:if>
+                    <td><fmt:formatDate value="${alog.lendDate}" pattern="yyyy-MM-dd" /></td>
+                    <td><fmt:formatDate value="${alog.dueDate}" pattern="yyyy-MM-dd" /></td>
+                    <td><fmt:formatDate value="${alog.returnDate}" pattern="yyyy-MM-dd" /></td>
+                    <c:choose>
+                        <c:when test="${empty alog.returnDate}">
+                            <td>Not Returned</td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>Returned</td>
+                        </c:otherwise>
+                    </c:choose>
+                    <td>
+                        <c:set var="flag" value="false"/>
+                        <c:forEach var="lend" items="${myLendList}">
+                            <c:if test="${lend eq alog.bookId}">
+                                <c:set var="flag" value="true"/>
+                            </c:if>
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${flag}">
+                                <a href="returnbook.html?bookId=<c:out value="${alog.bookId}"></c:out>">
+                                    <button type="button" class="btn btn-danger btn-xs">Return</button>
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <button type="button" class="btn btn-danger btn-xs" disabled="disabled">Return</button>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
