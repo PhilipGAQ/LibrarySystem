@@ -3,8 +3,10 @@ package com.library.controller;
 import com.library.bean.Book;
 import com.library.bean.Lend;
 import com.library.bean.ReaderCard;
+import com.library.bean.Reserve;
 import com.library.service.BookService;
 import com.library.service.LendService;
+import com.library.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class BookController {
@@ -24,6 +27,8 @@ public class BookController {
     private BookService bookService;
     @Autowired
     private LendService lendService;
+    @Autowired
+    private ReserveService reserveService;
 
     private Date getDate(String pubstr) {
         try {
@@ -85,7 +90,7 @@ public class BookController {
 
     @RequestMapping("/updatebook.html")
     public ModelAndView bookEdit(HttpServletRequest request) {
-        long bookId = Long.parseLong(request.getParameter("bookId"));
+        long bookId = Long.parseLong(request.getParameter("book_id"));
         Book book = bookService.getBook(bookId);
         ModelAndView modelAndView = new ModelAndView("admin_book_edit");
         modelAndView.addObject("detail", book);
@@ -105,7 +110,7 @@ public class BookController {
 
     @RequestMapping("/admin_book_detail.html")
     public ModelAndView adminBookDetail(HttpServletRequest request) {
-        long bookId = Long.parseLong(request.getParameter("bookId"));
+        long bookId = Long.parseLong(request.getParameter("book_id"));
         Book book = bookService.getBook(bookId);
         ModelAndView modelAndView = new ModelAndView("admin_book_detail");
         modelAndView.addObject("detail", book);
@@ -114,7 +119,7 @@ public class BookController {
 
     @RequestMapping("/reader_book_detail.html")
     public ModelAndView readerBookDetail(HttpServletRequest request) {
-        long bookId = Long.parseLong(request.getParameter("bookId"));
+        long bookId = Long.parseLong(request.getParameter("book_id"));
         Book book = bookService.getBook(bookId);
         ModelAndView modelAndView = new ModelAndView("reader_book_detail");
         modelAndView.addObject("detail", book);
@@ -135,16 +140,19 @@ public class BookController {
     public ModelAndView readerBooks(HttpServletRequest request) {
         ArrayList<Book> books = bookService.getAllBooks();
         ReaderCard readerCard = (ReaderCard) request.getSession().getAttribute("readercard");
+        List<Reserve> myReserveList = reserveService.getReserveByStudentId(readerCard.getReaderId());
         ArrayList<Lend> myAllLendList = lendService.myLendList(readerCard.getReaderId());
         ArrayList<Long> myLendList = new ArrayList<>();
         for (Lend lend : myAllLendList) {
             if (lend.getReturnDate() == null) {
-                myLendList.add(lend.getBookId());
+                myLendList.add(lend.getBook_id());
             }
         }
         ModelAndView modelAndView = new ModelAndView("reader_books");
         modelAndView.addObject("books", books);
         modelAndView.addObject("myLendList", myLendList);
+        modelAndView.addObject("myReserveList",myReserveList);
+
         return modelAndView;
     }
 }

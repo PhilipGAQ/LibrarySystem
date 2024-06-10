@@ -1,8 +1,14 @@
 package com.library.controller;
 
 import com.library.bean.Admin;
+import com.library.bean.Reserve;
 import com.library.bean.ReaderCard;
+import com.library.bean.Book;
 import com.library.service.LoginService;
+import com.library.service.ReserveService;
+import com.library.service.BookService;
+
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +25,8 @@ import java.util.HashMap;
 public class LoginController {
 
     private LoginService loginService;
+    private ReserveService reserveService;
+    private BookService bookService;
 
 
     @Autowired
@@ -26,6 +34,12 @@ public class LoginController {
         this.loginService = loginService;
     }
 
+    @Autowired
+    public void setReserveService(ReserveService reserveService) {
+        this.reserveService = reserveService;}
+
+    @Autowired
+    public void setBookService(BookService bookService) {this.bookService = bookService;}
 
     @RequestMapping(value = {"/", "/login.html"})
     public String toLogin(HttpServletRequest request) {
@@ -77,9 +91,25 @@ public class LoginController {
     }
 
     @RequestMapping("/reader_main.html")
-    public ModelAndView toReaderMain(HttpServletResponse response) {
-        return new ModelAndView("reader_main");
+    public ModelAndView toReaderMain(HttpServletRequest request) {
+        ReaderCard readerCard = (ReaderCard) request.getSession().getAttribute("readercard");
+        List<Reserve> readerReserveList = reserveService.getReserveByStudentId(readerCard.getReaderId());
+
+        boolean hasAvailableBooks = false;
+
+        for (Reserve reserve : readerReserveList) {
+            Book book = bookService.getBook(reserve.getBook_id());
+            if (book.getNumber() > 0) {
+                hasAvailableBooks = true;
+                break;
+            }
+        }
+
+        ModelAndView modelAndView = new ModelAndView("reader_main");
+        modelAndView.addObject("hasAvailableBooks", hasAvailableBooks);
+        return modelAndView;
     }
+
 
     @RequestMapping("/admin_repasswd.html")
     public ModelAndView reAdminPasswd() {

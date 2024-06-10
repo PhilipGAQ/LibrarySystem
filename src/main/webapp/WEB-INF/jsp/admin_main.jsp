@@ -63,7 +63,7 @@ background-attachment: fixed;">
         <ul>
             <li><a href="admin_books.html">All Books</a></li>
             <li><a href="allreaders.html">All Readers</a></li>
-            <li><a href="lendlist.html">Lending Logs</a></li>
+            <li><a href="borrowlist.html">Lending Logs</a></li>
             <li><a href="overduelist.html">Fine Logs</a></li>
             <!-- Add more links as needed -->
         </ul>

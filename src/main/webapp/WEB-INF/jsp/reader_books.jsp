@@ -101,12 +101,13 @@ background-attachment: fixed;">
                     <th>Remaining</th>
                     <th>Borrow</th>
                     <th>Details</th>
+                    <th>Reserve</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${books}" var="book">
                     <tr>
-                        <td><c:out value="${book.bookId}"/></td>
+                        <td><c:out value="${book.book_id}"/></td>
                         <td><c:out value="${book.name}"/></td>
                         <td><c:out value="${book.author}"/></td>
                         <td><c:out value="${book.publish}"/></td>
@@ -116,18 +117,18 @@ background-attachment: fixed;">
 
                         <c:set var="flag" value="false"/>
                         <c:forEach var="lend" items="${myLendList}">
-                            <c:if test="${lend eq book.bookId}">
+                            <c:if test="${lend eq book.book_id}">
                                 <c:set var="flag" value="true"/>
                             </c:if>
                         </c:forEach>
                         <c:if test="${flag}">
-                            <td><a href="lendbook.html?bookId=<c:out value="${book.bookId}"></c:out>">
+                            <td><a href="borrowbook.html?book_id=<c:out value="${book.book_id}"></c:out>">
                                 <button type="button" class="btn btn-primary btn-xs" disabled="disabled">Borrow</button>
                             </a></td>
                         </c:if>
                         <c:if test="${not flag}">
                             <c:if test="${book.number>0}">
-                                <td><a href="lendbook.html?bookId=<c:out value="${book.bookId}"></c:out>">
+                                <td><a href="borrowbook.html?book_id=<c:out value="${book.book_id}"></c:out>">
                                     <button type="button" class="btn btn-primary btn-xs">Borrow</button>
                                 </a></td>
                             </c:if>
@@ -137,9 +138,36 @@ background-attachment: fixed;">
                                 </td>
                             </c:if>
                         </c:if>
-                        <td><a href="reader_book_detail.html?bookId=<c:out value="${book.bookId}"></c:out>">
+                        <td><a href="reader_book_detail.html?book_id=<c:out value="${book.book_id}"></c:out>">
                             <button type="button" class="btn btn-success btn-xs">Details</button>
                         </a></td>
+                        <td>
+                            <c:set var="isReserved" value="false"/>
+                            <c:forEach var="reserve" items="${myReserveList}">
+                                <c:if test="${reserve.book_id == book.book_id}">
+                                    <c:set var="isReserved" value="true"/>
+                                </c:if>
+                            </c:forEach>
+
+                            <c:choose>
+                                <c:when test="${book.number > 0}">
+                                    <button type="button" class="btn btn-primary btn-xs" disabled="disabled">Reserve</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:choose>
+                                        <c:when test="${isReserved}">
+                                            <button type="button" class="btn btn-primary btn-xs" disabled="disabled">Reserved</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="reservebook.html?book_id=<c:out value='${book.book_id}'></c:out>">
+                                                <button type="button" class="btn btn-primary btn-xs">Reserve</button>
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+
                     </tr>
                 </c:forEach>
                 </tbody>

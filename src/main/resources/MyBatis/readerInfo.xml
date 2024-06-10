@@ -12,7 +12,7 @@
     </delete>
     <update id="editReaderInfo" parameterType="com.library.bean.ReaderInfo">
         update reader set name = #{name} , sex = #{sex},
-        birth = #{birth} ,address = #{address} ,phone = #{phone}
+        birth = #{birth} ,address = #{address} ,phone = #{phone},profile_picture=#{profile_picture}
         where reader_id = #{reader_id}
     </update>
     <update id="editReaderCard" parameterType="com.library.bean.ReaderInfo">
@@ -21,12 +21,11 @@
     </update>
     <insert id="addReaderInfo" parameterType="com.library.bean.ReaderInfo">
         insert into reader values
-        (null, #{name},#{sex},#{birth},#{address},#{phone},null,null)
+        (null, #{name},#{sex},#{birth},#{address},#{phone},null,null,#{profile_picture})
     </insert>
     <select id="getReaderId" resultType="long" parameterType="com.library.bean.ReaderInfo">
         select reader_id from reader where
-        name = #{name} and sex = #{sex} and
-        birth = #{birth} and address = #{address}
+        name = #{name} and sex = #{sex}
         and phone = #{phone}
     </select>
 </mapper>

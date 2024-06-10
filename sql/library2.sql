@@ -38,7 +38,7 @@ CREATE TABLE `reservation` (
                                `student_id` BIGINT NOT NULL,
                                `book_id` BIGINT NOT NULL,
                                `reservation_date` DATE NOT NULL,
-                               `status` INT NOT NULL
+                               `book_name` VARCHAR ( 25 ) NOT NULL
 )  DEFAULT CHARSET = utf8;
 
 
@@ -56,7 +56,8 @@ CREATE TABLE `reader` (
                                `address` VARCHAR ( 50 ) NOT NULL,
                                `phone` VARCHAR ( 15 ) NOT NULL,
                                `username` VARCHAR (15) default NULL,
-                                `password` VARCHAR (15) DEFAULT '123456'
+                                `password` VARCHAR (15) DEFAULT '123456',
+                                `profile_picture` VARCHAR(255) DEFAULT  'img/default.jpg'
 )DEFAULT CHARSET = utf8;
 
 

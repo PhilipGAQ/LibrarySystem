@@ -11,13 +11,13 @@ INSERT INTO `class` (`class_id`, `class_name`) VALUES
 (110, 'Biography');
 
 
-INSERT INTO `reader` (name, sex, birth, address, phone,username,password) VALUES
-('John Doe', 'M', '1985-04-12', '123 Elm Street, New York', '555-1234' ,NULL, '123456' ),
-('Jane Smith', 'F', '1991-07-25', '456 Oak Street, Los Angeles', '555-2345','11112', '123456'),
-('Michael Brown', 'M', '1980-09-15', '789 Pine Street, Chicago', '555-3456','11113','123456'),
-('Emily Davis', 'F', '1993-01-30', '101 Birch Street, Houston', '555-4567','11114', '123456'),
-('William Miller', 'M', '1987-12-08', '202 Maple Street, Philadelphia', '555-5678','11115', '123456'),
-('Olivia Wilson', 'F', '1995-06-18', '303 Cedar Street, San Francisco', '555-6789','11116', '123456');
+INSERT INTO `reader` (name, sex, birth, address, phone,username,password,profile_picture) VALUES
+('John Doe', 'M', '1985-04-12', '123 Elm Street, New York', '555-1234' ,NULL, '123456' ,'img/images.jpg'),
+('Jane Smith', 'F', '1991-07-25', '456 Oak Street, Los Angeles', '555-2345','11112', '123456','img/default.jpg'),
+('Michael Brown', 'M', '1980-09-15', '789 Pine Street, Chicago', '555-3456','11113','123456','img/images.jpg'),
+('Emily Davis', 'F', '1993-01-30', '101 Birch Street, Houston', '555-4567','11114', '123456','img/images.jpg'),
+('William Miller', 'M', '1987-12-08', '202 Maple Street, Philadelphia', '555-5678','11115', '123456','img/images.jpg'),
+('Olivia Wilson', 'F', '1995-06-18', '303 Cedar Street, San Francisco', '555-6789','11116', '123456','img/images.jpg');
 
 
 
@@ -42,18 +42,20 @@ INSERT INTO `borrow` (`borrow_id`, `book_id`, `reader_id`, `borrow_date`, `due_d
 VALUES
 (null, 7, 4, '2024-06-05', NULL, '2024-06-10'),
 (null, 3, 2, '2024-06-03', '2024-06-10', '2024-06-08'),
-(null, 12, 1, '2024-06-01', '2024-06-08', '2024-06-05'),
+(null, 12, 1, '2024-06-01', '2024-06-08', NULL),
 (null, 5, 3, '2024-06-04', '2024-06-11', NULL),
 (null, 9, 5, '2024-06-02', '2024-06-09', '2024-06-07'),
-(null, 2, 4, '2024-06-05', '2024-06-12', NULL);
+(null, 2, 4, '2024-06-05', '2024-06-12', NULL),
+(null, 6, 1, '2024-06-05', '2024-06-9', NULL);
 
-INSERT INTO `reservation` (`student_id`, `book_id`, `reservation_date`, `status`) VALUES
-(1, 4, '2024-06-05', 1),
-(2, 8, '2024-06-04', 1),
-(3, 12, '2024-06-03', 1),
-(4, 6, '2024-06-02', 1),
-(5, 7, '2024-06-01', 1);
+INSERT INTO `reservation` (`student_id`, `book_id`, `reservation_date`,`book_name`) VALUES
+(1, 4, '2024-06-05',null),
+(2, 8, '2024-06-04',null),
+(3, 12, '2024-06-03',null),
+(4, 6, '2024-06-02',null),
+(5, 7, '2024-06-01',null);
 
 INSERT INTO `admin`
 VALUES
 ( 123, '123', 'admin' , 'PB21020572');
+

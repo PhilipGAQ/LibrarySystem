@@ -3,8 +3,9 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/sql/foreignkey.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql/insert.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/sql/library.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql/library2.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/oneinall.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql/procedure_trigger.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql/update.sql" dialect="MySQL" />
   </component>
 </project>

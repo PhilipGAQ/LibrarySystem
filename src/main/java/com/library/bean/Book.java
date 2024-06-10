@@ -18,11 +18,11 @@ public class Book implements Serializable {
     private int class_id;
     private int number;
 
-    public long getBookId() {
+    public long getBook_id() {
         return book_id;
     }
 
-    public void setBookId(long book_id) {
+    public void setBook_id(long book_id) {
         this.book_id = book_id;
     }
 

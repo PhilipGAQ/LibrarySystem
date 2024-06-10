@@ -20,11 +20,11 @@ public class Lend implements Serializable {
         this.reader_id = reader_id;
     }
 
-    public long getBookId() {
+    public long getBook_id() {
         return book_id;
     }
 
-    public void setBookId(long book_id) {
+    public void setBook_id(long book_id) {
         this.book_id = book_id;
     }
 

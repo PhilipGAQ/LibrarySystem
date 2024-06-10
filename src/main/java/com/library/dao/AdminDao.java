@@ -1,10 +1,13 @@
 package com.library.dao;
 
+import com.library.bean.Admin;
+import com.library.bean.ReaderInfo;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -35,5 +38,31 @@ public class AdminDao {
     public String getUsername(final long admin_id) {
         return sqlSessionTemplate.selectOne(NAMESPACE + "getUsername", admin_id);
     }
+
+    public final long addAdmin(final Admin admin) {
+        if (sqlSessionTemplate.insert(NAMESPACE + "addAdmin", admin) > 0) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    public int updateAdmin(final Admin admin) {
+        return sqlSessionTemplate.update(NAMESPACE + "updateAdmin", admin);
+    }
+
+    public int deleteAdmin(final long adminId) {
+        return sqlSessionTemplate.delete(NAMESPACE + "deleteAdmin", adminId);
+    }
+
+    public Admin getAdminById(final long adminId) {
+        return sqlSessionTemplate.selectOne(NAMESPACE + "getAdminById", adminId);
+    }
+
+    public List<Admin> getAllAdmins() {
+        return sqlSessionTemplate.selectList(NAMESPACE + "getAllAdmins");
+    }
+
+
 
 }

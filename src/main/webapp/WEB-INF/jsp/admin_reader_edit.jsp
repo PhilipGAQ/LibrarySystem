@@ -81,6 +81,10 @@
                         <label for="phone">Phone</label>
                         <input type="text" class="form-control" name="phone" id="phone" value="${readerInfo.phone}">
                     </div>
+                    <div class="form-group">
+                        <label for="profile_picture">Profile picture</label>
+                        <input type="text" class="form-control" name="profile_picture" id="profile_picture" value="${readerInfo.profile_picture}">
+                    </div>
                     <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">
                 </form>
                 <script>

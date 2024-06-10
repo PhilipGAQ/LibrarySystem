@@ -60,7 +60,7 @@
                 <h3 class="panel-title">Edit "${detail.name}"</h3>
             </div>
             <div class="panel-body">
-                <form action="book_edit_do.html?bookId=${detail.bookId}" method="post" id="addbook" >
+                <form action="book_edit_do.html?book_id=${detail.book_id}" method="post" id="addbook" >
 
                     <div class="form-group">
                         <label for="name">Title</label>

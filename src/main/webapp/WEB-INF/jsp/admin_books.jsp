@@ -105,14 +105,14 @@
                 <tbody>
                 <c:forEach items="${books}" var="book">
                     <tr>
-                        <td><c:out value="${book.bookId}"/></td>
+                        <td><c:out value="${book.book_id}"/></td>
                         <td><b><c:out value="${book.name}"/></b></td>
                         <td><c:out value="${book.author}"/></td>
                         <td><c:out value="${book.price}"/></td>
                         <td><c:out value="${book.number}"/></td>
-                        <td><a href="admin_book_detail.html?bookId=<c:out value="${book.bookId}"/>"><button type="button" class="btn btn-custom btn-sm">Details</button></a></td>
-                        <td><a href="updatebook.html?bookId=<c:out value="${book.bookId}"/>"><button type="button" class="btn btn-custom btn-sm">Edit</button></a></td>
-                        <td><a href="deletebook.html?bookId=<c:out value="${book.bookId}"/>"><button type="button" class="btn btn-custom btn-sm">Delete</button></a></td>
+                        <td><a href="admin_book_detail.html?book_id=<c:out value="${book.book_id}"/>"><button type="button" class="btn btn-custom btn-sm">Details</button></a></td>
+                        <td><a href="updatebook.html?book_id=<c:out value="${book.book_id}"/>"><button type="button" class="btn btn-custom btn-sm">Edit</button></a></td>
+                        <td><a href="deletebook.html?book_id=<c:out value="${book.book_id}"/>"><button type="button" class="btn btn-custom btn-sm">Delete</button></a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

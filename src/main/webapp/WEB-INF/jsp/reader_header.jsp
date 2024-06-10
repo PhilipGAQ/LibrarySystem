@@ -11,13 +11,16 @@
                     <a class="nav-link" href="reader_books.html">Book Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="reader_info.html">Personal Information</a>
+                    <a class="nav-link" href="reader_info.html">Information</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mylend.html">My Borrowings</a>
+                    <a class="nav-link" href="myborrow.html">My Borrowings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="myoverdue.html">My Overdues</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="myreserve.html">My Reservation</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="reader_repasswd.html">Change Password</a>
@@ -25,7 +28,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="reader_info.html">${readercard.name}, Logged In</a>
+                    <a class="nav-link" href="reader_info.html">${readercard.name}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.html">Logout</a>

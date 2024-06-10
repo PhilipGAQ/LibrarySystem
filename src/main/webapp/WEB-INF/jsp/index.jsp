@@ -83,7 +83,7 @@
         </div>
         <div class="panel-body">
             <div class="form-group">
-                <label for="id">Username</label>
+                <label for="id">Your Id</label>
                 <input type="text" class="form-control" id="id" placeholder="Enter username">
             </div>
             <div class="form-group">
@@ -136,11 +136,11 @@
         var passwd = $("#passwd").val();
         var remember = $("#remember").prop('checked');
         if (id == '') {
-            $("#info").text("Tip: Username cannot be empty");
+            $("#info").text("Tip: ID cannot be empty");
         } else if (passwd == '') {
             $("#info").text("Tip: Password cannot be empty");
         } else if (isNaN(id)) {
-            $("#info").text("Tip: Username must be digits only");
+            $("#info").text("Tip: ID must be digits only");
         } else {
             $.ajax({
                 type: "POST",
@@ -152,7 +152,7 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.stateCode.trim() === "0") {
-                        $("#info").text("Tip: Incorrect username or password!");
+                        $("#info").text("Tip: Incorrect ID or password!");
                     } else if (data.stateCode.trim() === "1") {
                         $("#info").text("Tip: Login successful, redirecting...");
                         window.location.href = "admin_main.html";

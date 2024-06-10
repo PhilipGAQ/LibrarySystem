@@ -34,5 +34,28 @@ BEGIN
     END IF;
 END//
 
+
+CREATE TRIGGER delete_reservation_after_borrow
+    AFTER INSERT ON borrow
+    FOR EACH ROW
+BEGIN
+    DELETE FROM reservation
+    WHERE student_id = NEW.reader_id
+      AND book_id = NEW.book_id;
+END //
+
+CREATE TRIGGER `set_book_name`
+    BEFORE INSERT ON `reservation`
+    FOR EACH ROW
+BEGIN
+    DECLARE bookName VARCHAR(255);
+
+    -- 获取对应书籍的书名
+    SELECT name INTO bookName FROM book WHERE book_id = NEW.book_id;
+
+    -- 设置预订信息的书名为对应的书籍名字
+    SET NEW.book_name = bookName;
+END//
+
 DELIMITER ;
 

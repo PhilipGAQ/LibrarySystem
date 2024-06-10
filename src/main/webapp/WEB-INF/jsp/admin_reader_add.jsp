@@ -90,6 +90,10 @@
                             <label for="phone">Phone</label>
                             <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter phone number">
                         </div>
+                        <div class="form-group">
+                            <label for="profile_picture">Profile Picture</label>
+                            <input type="text" class="form-control" name="profile_picture" id="profile_picture" placeholder="Choose Profile Picture">
+                        </div>
                         <button type="submit" class="btn btn-primary btn-block">Add</button>
                     </form>
                     <script>

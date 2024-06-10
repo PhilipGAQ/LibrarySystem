@@ -11,6 +11,11 @@ public class ReaderInfo implements Serializable {
     private Date birth;
     private String address;
     private String phone;
+    private String profile_picture;
+
+    public String getProfile_picture() {return profile_picture;}
+
+    public void setProfile_picture(String profile_picture) {this.profile_picture = profile_picture;}
 
     public long getReaderId() {
         return reader_id;

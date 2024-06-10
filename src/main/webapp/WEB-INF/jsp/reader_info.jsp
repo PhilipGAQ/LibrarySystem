@@ -60,6 +60,10 @@
                     <th>Phone</th>
                     <td>${readerinfo.phone}</td>
                 </tr>
+                <tr>
+                    <th>Profile Picture</th>
+                    <td><img src="${readerinfo.profile_picture}" alt="Profile Picture" class="img-thumbnail" style="max-width: 100px; max-height: 100px;"></td>
+                </tr>
             </table>
         </div>
         <a class="btn btn-primary" href="reader_info_edit.html" role="button">Edit</a>

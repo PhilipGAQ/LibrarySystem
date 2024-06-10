@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>${readercard.name}的主页</title>
@@ -7,7 +8,12 @@
     <script src="js/bootstrap.min.js"></script>
     <script>
         $(function () {
-            $('#header').load('reader_header.html');
+            $('#header').load('reader_header.html', function() {
+                // Show the alert message if there are any available books for reservation
+                if (${hasAvailableBooks}) {
+                    $('#reserveAlert').show();
+                }
+            });
         });
     </script>
     <style>
@@ -28,7 +34,6 @@
             background-color: rgba(255, 255, 255, 0.76); /* 导航栏背景颜色 */
             padding-top: 20px; /* 调整顶部内边距 */
             border-radius: 10px; /* 添加边框圆角 */
-            /* 新增样式以调整位置 */
             margin-left: 700px; /* 向左偏移，使其更靠近中间 */
         }
         .vertical-navbar ul {
@@ -49,6 +54,19 @@
         .vertical-navbar a:hover {
             background-color: #e9ecef;
         }
+        .can-reserve {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+        }
+        .alert {
+            position: fixed;
+            bottom: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+        }
     </style>
 </head>
 <body background="img/ustclibrary.jpg" style=" background-repeat:no-repeat ;
@@ -62,11 +80,16 @@ background-attachment: fixed;">
         <ul>
             <li><a href="reader_books.html">All Books</a></li>
             <li><a href="reader_info.html">My Info</a></li>
-            <li><a href="mylend.html">Lending Logs</a></li>
+            <li><a href="myborrow.html">Lending Logs</a></li>
             <li><a href="myoverdue.html">Overdue Logs</a></li>
+            <li><a href="myreserve.html">Reservation</a></li>
             <!-- Add more links as needed -->
         </ul>
     </div>
+</div>
+
+<div id="reserveAlert" class="alert alert-info" style="display: none;">
+    你预定的图书到货了
 </div>
 
 </body>

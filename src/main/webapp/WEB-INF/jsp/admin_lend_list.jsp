@@ -92,12 +92,12 @@
             <c:forEach items="${list}" var="alog">
                 <tr>
                     <td><c:out value="${alog.borrow_id}"></c:out></td>
-                    <td><c:out value="${alog.bookId}"></c:out></td>
+                    <td><c:out value="${alog.book_id}"></c:out></td>
                     <td><c:out value="${alog.readerId}"></c:out></td>
                     <td><c:out value="${alog.lendDate}"></c:out></td>
                     <td><c:out value="${alog.backDate}"></c:out></td>
                     <td>
-                        <a href="deletelend.html?serNum=<c:out value='${alog.borrow_id}'></c:out>">
+                        <a href="deleteborrow.html?serNum=<c:out value='${alog.borrow_id}'></c:out>">
                             <c:if test="${!empty alog.backDate}">
                                 <button type="button" class="btn btn-danger btn-xs">Delete</button>
                             </c:if>

@@ -63,6 +63,10 @@
                     <label for="phone" style="font-size: 16px;">Phone</label>
                     <input type="text" class="form-control" name="phone" id="phone" value="${readerinfo.phone}">
                 </div>
+                <div class="form-group">
+                    <label for="profile_picture" style="font-size: 16px;">profile_picture</label>
+                    <input type="text" class="form-control" name="profile_picture" id="profile_picture" value="${readerinfo.profile_picture}">
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

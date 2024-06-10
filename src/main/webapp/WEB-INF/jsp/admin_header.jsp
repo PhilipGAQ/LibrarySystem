@@ -32,10 +32,15 @@
                         Lending Management
                     </a>
                     <div class="dropdown-menu" aria-labelledby="lendManagementDropdown" style="font-size: 1.25rem;">
-                        <a class="dropdown-item" href="lendlist.html">Lending Logs</a>
+                        <a class="dropdown-item" href="borrowlist.html">Lending Logs</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="overduelist.html">Fine Logs</a>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reservelist.html" style="margin-right: 20px;">
+                        All Reservations
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="admin_repasswd.html" style="margin-right: 20px;">
@@ -45,8 +50,8 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html" style="margin-right: 20px;">
-                        ${admin.username}, Logged In
+                    <a class="nav-link" href="allAdmins.html" style="margin-right: 20px;">
+                        All admins
                     </a>
                 </li>
                 <li class="nav-item">

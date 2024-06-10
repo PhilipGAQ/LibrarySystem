@@ -94,7 +94,7 @@
             <tbody>
             <c:forEach items="${list}" var="alog">
                 <tr>
-                    <td><c:out value="${alog.bookId}"></c:out></td>
+                    <td><c:out value="${alog.book_id}"></c:out></td>
                     <td><fmt:formatDate value="${alog.lendDate}" pattern="yyyy-MM-dd" /></td>
                     <td><fmt:formatDate value="${alog.dueDate}" pattern="yyyy-MM-dd" /></td>
                     <td><fmt:formatDate value="${alog.returnDate}" pattern="yyyy-MM-dd" /></td>
@@ -108,14 +108,14 @@
                     </c:choose>
                     <td>
                         <c:set var="flag" value="false"/>
-                        <c:forEach var="lend" items="${myLendList}">
-                            <c:if test="${lend eq alog.bookId}">
+                        <c:forEach var="lend" items="${LendList}">
+                            <c:if test="${lend eq alog.borrow_id}">
                                 <c:set var="flag" value="true"/>
                             </c:if>
                         </c:forEach>
                         <c:choose>
                             <c:when test="${flag}">
-                                <a href="returnbook.html?bookId=<c:out value="${alog.bookId}"></c:out>">
+                                <a href="returnbook.html?book_id=<c:out value="${alog.book_id}"></c:out>">
                                     <button type="button" class="btn btn-danger btn-xs">Return</button>
                                 </a>
                             </c:when>

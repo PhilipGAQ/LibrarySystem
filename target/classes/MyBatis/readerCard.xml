@@ -18,4 +18,7 @@
     <delete id="deleteReaderCard" parameterType="long">
         delete from reader where reader_id = #{reader_id}
     </delete>
+    <update id="addReaderCard">
+        update reader set username=#{username}, password=#{password} where reader_id = #{reader_id}
+    </update>
 </mapper>
